@@ -1,25 +1,38 @@
 name: ci
+
 on:
   push:
+    branches: [main]
   pull_request:
+    branches: [main]
   workflow_dispatch:
 
 jobs:
   test:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-      - name: Install deps
-        run: pip install -r requirements.txt
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
       - name: Lint
         run: ruff check src tests
+
       - name: Unit tests (mock mode - no AWS)
         run: pytest tests/ -q
+
       - name: CLI smoke (mock)
         run: python -m src.cli --mode mock --query "What is 15 times 27?"
+
       - name: Real Bedrock smoke (only with creds)
         if: ${{ secrets.AWS_ACCESS_KEY_ID != '' }}
         env:
