@@ -1,0 +1,12 @@
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.env
+*.tfstate
+*.tfstate.*
+.terraform/
+.terraform.lock.hcl
+.mypy_cache/
+.ruff_cache/
+.pytest_cache/
