@@ -75,5 +75,3 @@ terraform/
 
 - `agentic-platform-aws` — the full multi-agent + eval platform design on AWS
 - `llm-evals-demo` — the RAGAS quality bar / CI gate
-
-Built by George Kpai (github.com/koate-kpai).
