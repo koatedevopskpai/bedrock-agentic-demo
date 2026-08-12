@@ -2,6 +2,7 @@ name: ci
 on:
   push:
   pull_request:
+  workflow_dispatch:
 
 jobs:
   test:
@@ -15,7 +16,7 @@ jobs:
         run: pip install -r requirements.txt
       - name: Lint
         run: ruff check src tests
-      - name: Unit tests (mock mode — no AWS)
+      - name: Unit tests (mock mode - no AWS)
         run: pytest tests/ -q
       - name: CLI smoke (mock)
         run: python -m src.cli --mode mock --query "What is 15 times 27?"
