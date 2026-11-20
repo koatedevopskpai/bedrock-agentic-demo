@@ -2,6 +2,15 @@
 
 An agentic AI demo that runs on **AWS Bedrock** (Claude) with a **FastAPI** service, a **tool-calling** loop, **Terraform** IaC, and **CI**. Built to demonstrate the AWS track of my portfolio: Bedrock as code, agent design, and a quality gate — without pretending it's a full enterprise platform (that's `agentic-platform-aws`).
 
+## Status (20 Nov 2026)
+
+- **Mock mode is what is tested.** The 4 unit tests and CI run the agent loop against a deterministic mock model; no AWS calls are made.
+- **The real Bedrock path has not been run live.** `src/bedrock.py` contains the `invoke_model` call, but no live run is recorded:
+  inference on the AWS account used for this portfolio is currently blocked by account-level quotas (applied limits are 0).
+  Treat the Bedrock integration as unverified until a live run is recorded here.
+- **A small reference build, not a production service.** The auditability described below means the returned `trace[]`,
+  not an operated system.
+
 ## What it demonstrates
 
 - **AWS Bedrock** — invokes Claude via the Bedrock runtime (`boto3`); IAM-guarded model access
